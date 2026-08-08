@@ -76,6 +76,9 @@ You can now:
 
 without having to create separate recording files.
 
+<img width="1605" height="1011" alt="OBS Recording Fix" src="https://github.com/user-attachments/assets/ba63d771-4e4a-4fde-85c9-8460a293aa47" />
+
+
 ### 📌 Technical Summary
 
 | Component               | Details                                       |
