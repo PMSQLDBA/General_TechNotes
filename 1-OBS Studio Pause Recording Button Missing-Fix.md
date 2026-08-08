@@ -78,6 +78,8 @@ without having to create separate recording files.
 
 <img width="1605" height="1011" alt="OBS Recording Fix" src="https://github.com/user-attachments/assets/ba63d771-4e4a-4fde-85c9-8460a293aa47" />
 
+<img width="1921" height="1017" alt="OBS Recording Fix-2" src="https://github.com/user-attachments/assets/3a2e1a16-8051-4ba2-bd0d-6059a054526a" />
+
 
 ### 📌 Technical Summary
 
