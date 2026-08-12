@@ -25,18 +25,25 @@ Below output confirms that the WSL components have successfully been installed:
 DELL@PMSQLDBA ~
 $ wsl --install
 The requested operation requires elevation.
+
 Downloading: Windows Subsystem for Linux 2.7.11
+
 Installing: Windows Subsystem for Linux 2.7.11
+
 Windows Subsystem for Linux 2.7.11 has been installed.
+
 Installing Windows optional component: VirtualMachinePlatform
 
 Deployment Image Servicing and Management tool
+
 Version: 10.0.26100.8972
 
 Image Version: 10.0.26200.9168
 
 Enabling feature(s)
+
 [==========================100.0%==========================]
+
 The operation completed successfully.
 The requested operation is successful. Changes will not be effective until the system is rebooted.
 The requested operation is successful. Changes will not be effective until the system is rebooted.
