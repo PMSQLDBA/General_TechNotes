@@ -1,4 +1,4 @@
-# Technical Article: Installing WSL 2 and Ubuntu on Windows 11 — Complete Step-by-Step Linux Environment Setup
+# README — Installing WSL 2 and Ubuntu on Windows 11: Complete Step-by-Step Linux Environment Setup
 
 ## 1. Introduction
 
@@ -14,7 +14,7 @@ The procedure is tailored to the current state of your Windows 11 system:
 * **Current shell:** Cygwin/Git-Bash-style shell
 * **WSL:** Already installed
 * **Virtual Machine Platform:** Already enabled
-* **Linux distribution:** **Not yet installed**
+* **Linux distribution:** **Ubuntu installed and initialized successfully**
 
 --Software to download and install on Windows Personal PC:
 
@@ -2204,3 +2204,244 @@ The installation is complete when all of the following are true:
 [1]: https://learn.microsoft.com/en-us/windows/wsl/install "Install WSL | Microsoft Learn"
 [2]: https://learn.microsoft.com/en-us/windows/wsl/setup/environment "Set up a WSL development environment | Microsoft Learn"
 [3]: https://learn.microsoft.com/en-us/windows/wsl/basic-commands "Basic commands for WSL | Microsoft Learn"
+
+---
+
+# 49. Latest Verified WSL 2 + Ubuntu Results — August 12, 2026
+
+The installation and verification procedure has now been executed successfully on `PMSQLDBA`.
+
+## 49.1 Cygwin vs Ubuntu Verification
+
+The following command was first executed from Cygwin:
+
+```bash
+cat /etc/os-release
+```
+
+Result:
+
+```text
+DELL@PMSQLDBA ~
+$ cat /etc/os-release
+cat: /etc/os-release: No such file or directory
+```
+
+This is expected because the command was executed in **Cygwin**, not Ubuntu/WSL.
+
+The correct transition into Ubuntu was:
+
+```bash
+wsl -d Ubuntu
+```
+
+The Ubuntu prompt was then:
+
+```text
+dell@PMSQLDBA:/mnt/c/cygwin64/home/DELL$
+```
+
+## 49.2 Ubuntu Distribution Verification
+
+Inside Ubuntu:
+
+```bash
+cat /etc/os-release
+```
+
+returned:
+
+```text
+PRETTY_NAME="Ubuntu 26.04 LTS"
+NAME="Ubuntu"
+VERSION_ID="26.04"
+VERSION="26.04 (Resolute Raccoon)"
+VERSION_CODENAME=resolute
+ID=ubuntu
+ID_LIKE=debian
+UBUNTU_CODENAME=resolute
+```
+
+**Result:** Ubuntu 26.04 LTS is confirmed as the installed and running distribution.
+
+## 49.3 Linux Kernel Verification
+
+Inside Ubuntu:
+
+```bash
+uname -a
+```
+
+returned:
+
+```text
+Linux PMSQLDBA 6.18.33.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026 x86_64 GNU/Linux
+```
+
+The identifier `microsoft-standard-WSL2` confirms that Ubuntu is running under the WSL 2 Linux kernel.
+
+## 49.4 Linux Block Device Verification
+
+Inside Ubuntu:
+
+```bash
+lsblk
+```
+
+returned:
+
+```text
+NAME MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+sda    8:0    0 356.9M  1 disk
+sdb    8:16   0 159.4M  1 disk
+sdc    8:32   0     3G  0 disk [SWAP]
+sdd    8:48   0     1T  0 disk /mnt/wslg/distro
+                               /
+```
+
+**Result:** `lsblk` is functioning correctly inside Ubuntu.
+
+Do not interpret this WSL block-device view as a direct inventory of the physical Windows disks. For Windows physical disks use:
+
+```powershell
+Get-Disk
+Get-Partition
+```
+
+For Linux/WSL storage use:
+
+```bash
+lsblk
+df -h
+findmnt
+du -sh
+```
+
+## 49.5 Current Working Directory
+
+Ubuntu was entered while Cygwin's current directory was mapped into Windows, so the initial Ubuntu prompt was:
+
+```text
+dell@PMSQLDBA:/mnt/c/cygwin64/home/DELL$
+```
+
+For normal Linux work, use the Linux home directory:
+
+```bash
+cd ~
+pwd
+```
+
+Expected:
+
+```text
+/home/dell
+```
+
+## 49.6 Verified Architecture
+
+```text
+Windows 11
+|
++-- PowerShell
+|     +-- Windows administration
+|     +-- Get-Disk
+|     +-- Get-Partition
+|     +-- Get-Process
+|     +-- Get-Service
+|
++-- Cygwin
+|     +-- Bash
+|     +-- POSIX/UNIX utilities
+|     +-- Git
+|     +-- SSH
+|
++-- WSL 2
+      |
+      +-- Linux kernel
+      |     6.18.33.2-microsoft-standard-WSL2
+      |
+      +-- Ubuntu 26.04 LTS
+            +-- Linux user: dell
+            +-- bash
+            +-- sudo
+            +-- apt
+            +-- lsblk
+            +-- df
+            +-- ps
+            +-- ip
+            +-- ssh
+            +-- Linux filesystem
+```
+
+## 49.7 Verified Completion Status
+
+```text
+[✓] Windows 11 environment identified
+[✓] WSL 2 installed
+[✓] Virtual Machine Platform enabled
+[✓] WSL 2 configured as default version
+[✓] Ubuntu installed
+[✓] Ubuntu initialized successfully
+[✓] Linux user `dell` created
+[✓] Linux password configured
+[✓] Ubuntu launches with `wsl -d Ubuntu`
+[✓] `/etc/os-release` identifies Ubuntu 26.04 LTS
+[✓] `uname -a` identifies the WSL 2 Linux kernel
+[✓] `lsblk` executes successfully inside Ubuntu
+[✓] Cygwin and Ubuntu environments correctly distinguished
+[ ] Change to `/home/dell` as the normal Linux working directory
+[ ] Run `sudo apt update`
+[ ] Run `sudo apt upgrade -y`
+[ ] Install Linux administration/DBA tools
+[ ] Verify networking
+[ ] Complete final Linux administration tests
+```
+
+## 49.8 Environment Recognition Rules
+
+### Cygwin
+
+```text
+DELL@PMSQLDBA ~
+$
+```
+
+### Ubuntu / WSL 2
+
+```text
+dell@PMSQLDBA:~$
+```
+
+Verify Ubuntu with:
+
+```bash
+cat /etc/os-release
+```
+
+Verify the WSL 2 kernel with:
+
+```bash
+uname -a
+```
+
+From PowerShell verify the distribution and WSL version with:
+
+```powershell
+wsl --list --verbose
+```
+
+The required distribution version is `2`.
+
+## 49.9 Next Step
+
+The WSL 2 and Ubuntu installation phase is **complete**. The next phase is Ubuntu post-installation configuration:
+
+```bash
+cd ~
+pwd
+sudo apt update
+sudo apt upgrade -y
+```
+
+Continue afterward with the Linux administration and DBA utility installation sections in this README.
