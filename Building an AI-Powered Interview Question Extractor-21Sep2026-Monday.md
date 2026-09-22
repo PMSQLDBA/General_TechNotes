@@ -145,3 +145,35 @@ time.sleep(execution_delay)
 This loop acts as a pressure release valve. It automatically waits out traffic bursts, ensures the script finishes running, and handles cloud processing gracefully.
 If you want to take this script further, let me know if you would like to explore writing the output automatically to an external Markdown file, or injecting time-markers (diarization) into the generation parameters.
 
+=============================================================
+
+To run your finished technical script from end to end, execute these three basic commands inside your Windows PowerShell window:
+## Step 1: Set Your Free Google API Key
+Paste your Google AI Studio API key into your active terminal window so the script can authenticate with the cloud server:
+
+$env:GEMINI_API_KEY="your_actual_copied_api_key_here"
+
+## Step 2: Navigate to Your Drive
+Make sure your PowerShell environment is looking at the *E:* drive where your script and audio file are stored:
+
+cd E:\
+
+## Step 3: Run the Script
+Execute the script using the Python engine:
+
+python extractor.py
+
+------------------------------
+## What to Expect During the Run
+Once you hit Enter, you will watch the automated pipeline handle everything step by step in real time:
+
+   1. ☁️ Initiating file streaming upload... (Takes roughly 30 to 45 seconds depending on internet speed to upload the 26MB file).
+   2. ⏳ Blocking thread: Awaiting remote codec processing... (Google validates the audio format).
+   3. 🔄 Execution context ready... (The script opens the chat connection stream).
+   4. 🧹 Execution complete. Removing asset references... (Cleans up your files from the cloud so no storage space is wasted).
+   5. The clean, numbered list of interview questions will print directly onto your screen.
+
+Let me know if the final execution prints out the clean list successfully or if you need to double-check the exact line number for your file path!
+
+
+
