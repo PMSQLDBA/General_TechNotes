@@ -1,6 +1,9 @@
 ## Building an AI-Powered Interview Question Extractor with Python and Google Gemini
+
 Processing audio recordings of interviews to find critical data is a tedious manual task. While local automated transcription tools (like OpenAI Whisper) exist, configuring them on local operating systems often introduces friction with low-level media dependencies (like FFmpeg) or file codec container conflicts.
+
 This technical reference article walks through an end-to-end, production-ready solution. It uploads audio files directly to the Google Gemini Cloud API, handles transient server traffic gracefully, extracts interview questions via structured prompting, and automatically performs post-execution memory cleanup.
+
 ------------------------------
 ## Technical Architecture Overview
 The system uses a direct cloud-ingestion architecture to maintain a lightweight local deployment footprint.
